@@ -9,34 +9,21 @@ using namespace std;
 #define deba(a)		 for(int i:a)cout<<i<<" ";cout<<endl;
 
 //----------------------------------------------------------------------//
-
+int lastIndex(int* a,int n,int x,int i=0){
+	if(n==i)
+		return -1;
+	int nm1 = lastIndex(a+1,n,x,i+1);
+	if(nm1 != -1)
+		return nm1;
+	if(a[0]==x)
+		return i;
+	return -1;
+}
 void func(){
-	int n1,m1,n2,m2;cin>>n1>>m1;
-	// int a[n1][m1];
-	vector<vector<int>> a(n1, vector<int>(m1));
-	for(int i=0;i<n1;i++){
-		for(int j=0;j<m1;j++)
-			cin>>a[i][j];
-	}
-	cin>>n2>>m2;
-	vector<vector<int>> b(n2, vector<int>(m2));
-	for(int i=0;i<n2;i++){
-		for(int j=0;j<m2;j++)
-			cin>>b[i][j];
-	}
-	if(m1!=n2){
-		cout<<"Invalid input";return;
-	}
-	vector<vector<int>> ans(n1, vector<int>(m2,0));
-
-	for(int i=0;i<n1;i++){
-		for(int j=0;j<m2;j++){
-			for(int k=0;k<m1;k++)
-				ans[i][j] += (a[i][k]*b[k][j]);	
-			cout<<ans[i][j]<<" ";
-		}
-		cout<<endl;
-	}
+	int n;cin>>n;
+	int a[n];for(int i=0;i<n;i++)cin>>a[i];
+	int x;cin>>x;
+	cout<<lastIndex(a,n,x);
 }
 
 //----------------------------------------------------------------------//

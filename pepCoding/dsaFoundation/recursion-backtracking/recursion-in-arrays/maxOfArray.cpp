@@ -10,33 +10,16 @@ using namespace std;
 
 //----------------------------------------------------------------------//
 
-void func(){
-	int n1,m1,n2,m2;cin>>n1>>m1;
-	// int a[n1][m1];
-	vector<vector<int>> a(n1, vector<int>(m1));
-	for(int i=0;i<n1;i++){
-		for(int j=0;j<m1;j++)
-			cin>>a[i][j];
-	}
-	cin>>n2>>m2;
-	vector<vector<int>> b(n2, vector<int>(m2));
-	for(int i=0;i<n2;i++){
-		for(int j=0;j<m2;j++)
-			cin>>b[i][j];
-	}
-	if(m1!=n2){
-		cout<<"Invalid input";return;
-	}
-	vector<vector<int>> ans(n1, vector<int>(m2,0));
+int m(int* a, int n){
+	if(n==1)
+		return a[0];
+	return max(m(a,n-1), a[n-1]);
+}
 
-	for(int i=0;i<n1;i++){
-		for(int j=0;j<m2;j++){
-			for(int k=0;k<m1;k++)
-				ans[i][j] += (a[i][k]*b[k][j]);	
-			cout<<ans[i][j]<<" ";
-		}
-		cout<<endl;
-	}
+void func(){
+	int n;cin>>n;int a[n];
+	for(int i=0;i<n;i++)cin>>a[i];
+	cout<<m(a,n);
 }
 
 //----------------------------------------------------------------------//
